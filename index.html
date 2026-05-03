@@ -9,39 +9,77 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #07070b;
-      --bg-soft: #0f1118;
-      --surface: rgba(255,255,255,0.06);
-      --surface-strong: rgba(255,255,255,0.1);
-      --text: #f5f7fb;
-      --muted: #a6adbb;
-      --line: rgba(255,255,255,0.12);
-      --accent: #f4d03f;
-      --accent-2: #8b5cf6;
-      --accent-3: #00d4ff;
-      --danger: #ff5d5d;
-      --shadow: 0 20px 60px rgba(0,0,0,0.45);
-      --radius-lg: 28px;
-      --radius-md: 20px;
+      --bg: #09070a;
+      --bg-soft: #151018;
+      --bg-deep: #050407;
+      --surface: rgba(255, 244, 230, 0.05);
+      --surface-strong: rgba(255, 244, 230, 0.1);
+      --text: #f7f1e8;
+      --muted: #b9aa99;
+      --line: rgba(255, 240, 223, 0.12);
+      --accent: #ff6a3d;
+      --accent-soft: #ffb36a;
+      --accent-2: #2fd6c4;
+      --accent-3: #ffe0bb;
+      --shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+      --radius-lg: 32px;
+      --radius-md: 22px;
       --radius-sm: 14px;
       --max: 1280px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+      font-family: 'Manrope', sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(139,92,246,0.22), transparent 28%),
-        radial-gradient(circle at top right, rgba(0,212,255,0.16), transparent 24%),
-        linear-gradient(180deg, #06060a 0%, #0a0c12 48%, #06060a 100%);
+        radial-gradient(circle at 15% 0%, rgba(255, 106, 61, 0.18), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(47, 214, 196, 0.14), transparent 24%),
+        linear-gradient(180deg, #060408 0%, #0e0910 42%, #08060a 100%);
       color: var(--text);
       min-height: 100vh;
       line-height: 1.6;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      top: -10rem;
+      right: -8rem;
+      width: 26rem;
+      height: 26rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 179, 106, 0.2), transparent 68%);
+      filter: blur(18px);
+    }
+
+    body::after {
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 92%);
+      opacity: 0.5;
+    }
+
+    ::selection {
+      background: rgba(255, 106, 61, 0.28);
+      color: var(--text);
     }
 
     img { max-width: 100%; display: block; }
@@ -56,33 +94,34 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.55rem 0.95rem;
-      border: 1px solid var(--line);
+      padding: 0.55rem 1rem;
+      border: 1px solid rgba(255, 179, 106, 0.2);
       border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      font-size: 0.86rem;
-      letter-spacing: 0.08em;
+      background: rgba(255, 244, 230, 0.04);
+      color: var(--accent-3);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       backdrop-filter: blur(12px);
     }
 
     .eyebrow::before {
       content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 14px rgba(244,208,63,0.7);
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      box-shadow: 0 0 16px rgba(255, 106, 61, 0.72);
     }
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 40;
-      backdrop-filter: blur(18px);
-      background: rgba(7,7,11,0.72);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      background: rgba(9, 7, 10, 0.72);
+      border-bottom: 1px solid rgba(255, 244, 230, 0.07);
     }
 
     .nav-wrap {
@@ -97,25 +136,27 @@
       display: flex;
       align-items: center;
       gap: 0.9rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.06em;
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      background:
+        linear-gradient(135deg, rgba(255, 106, 61, 0.95), rgba(255, 179, 106, 0.95)),
+        #180e0a;
       display: grid;
       place-items: center;
-      color: #08080d;
-      font-weight: 900;
-      box-shadow: 0 10px 24px rgba(139,92,246,0.35);
+      color: #150d09;
+      font-size: 1.5rem;
+      box-shadow: 0 14px 32px rgba(255, 106, 61, 0.28);
     }
 
     .brand span:last-child {
-      font-size: 1.08rem;
+      font-size: 1.65rem;
+      line-height: 1;
     }
 
     .nav-links {
@@ -123,50 +164,78 @@
       align-items: center;
       gap: 1.25rem;
       color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
     }
 
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a {
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      transform: translateY(-1px);
+    }
 
     .nav-cta {
-      padding: 0.8rem 1.15rem;
+      padding: 0.82rem 1.2rem;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), #ffe67a);
-      color: #0a0c12;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #170e09;
       font-weight: 800;
-      box-shadow: 0 12px 30px rgba(244,208,63,0.22);
+      box-shadow: 0 14px 30px rgba(255, 106, 61, 0.22);
     }
 
     .hero {
-      padding: 5.5rem 0 4rem;
       position: relative;
+      padding: 6.25rem 0 4.5rem;
       overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -8rem;
+      top: 3rem;
+      width: 28rem;
+      height: 28rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 106, 61, 0.15), transparent 72%);
+      filter: blur(10px);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 2.5rem;
       align-items: center;
     }
 
+    .hero h1,
+    .section-head h2,
+    .artist-body h3,
+    .quote-panel blockquote {
+      text-wrap: balance;
+    }
+
     .hero h1 {
-      margin-top: 1.15rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.9rem, 7vw, 6.3rem);
-      line-height: 0.94;
-      letter-spacing: -0.05em;
+      margin-top: 1.3rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.2rem, 10vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: 0.03em;
     }
 
     .hero h1 .accent {
       display: block;
-      color: var(--accent);
-      text-shadow: 0 0 24px rgba(244,208,63,0.18);
+      color: var(--accent-soft);
+      text-shadow: 0 0 26px rgba(255, 179, 106, 0.14);
     }
 
     .hero p {
       margin-top: 1.25rem;
-      max-width: 58ch;
-      font-size: 1.08rem;
+      max-width: 56ch;
+      font-size: 1.03rem;
       color: var(--muted);
     }
 
@@ -182,20 +251,25 @@
       align-items: center;
       justify-content: center;
       gap: 0.55rem;
-      padding: 0.95rem 1.25rem;
+      padding: 0.98rem 1.3rem;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 800;
       border: 1px solid transparent;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #ffe67a);
-      color: #0a0c12;
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(0, 0, 0, 0.18);
     }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #170e09;
+    }
+
     .btn-secondary {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 244, 230, 0.04);
       border-color: var(--line);
       color: var(--text);
     }
@@ -204,57 +278,239 @@
       position: relative;
       padding: 1.25rem;
       border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(180deg, rgba(255, 244, 230, 0.1), rgba(255, 244, 230, 0.04)),
+        rgba(22, 16, 24, 0.86);
+      border: 1px solid rgba(255, 240, 223, 0.11);
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
+      transform: rotate(-1.2deg);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 1rem;
+      border-radius: calc(var(--radius-lg) - 10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      pointer-events: none;
     }
 
     .hero-media {
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 2 / 1;
       border-radius: calc(var(--radius-lg) - 8px);
       overflow: hidden;
-      background: #111;
+      background:
+        radial-gradient(circle at top left, rgba(255, 106, 61, 0.12), transparent 34%),
+        linear-gradient(180deg, #08070a 0%, #050407 100%);
       position: relative;
+      display: grid;
+      place-items: center;
+      padding: 0.75rem;
     }
 
-    .hero-media img {
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(6, 4, 8, 0.02), rgba(6, 4, 8, 0.14)),
+        linear-gradient(135deg, rgba(255, 106, 61, 0.1), transparent 42%);
+      pointer-events: none;
+    }
+
+    .hero-art {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      filter: saturate(1.04) contrast(1.02);
+      border-radius: calc(var(--radius-lg) - 14px);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 106, 61, 0.22), transparent 26%),
+        radial-gradient(circle at 80% 24%, rgba(47, 214, 196, 0.16), transparent 20%),
+        linear-gradient(135deg, rgba(17, 10, 13, 0.98), rgba(5, 4, 7, 0.94));
+      border: 1px solid rgba(255, 240, 223, 0.08);
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
     }
 
-    .floating-stats {
-      position: absolute;
-      right: -1rem;
-      bottom: 1rem;
-      width: min(290px, 80%);
-      display: grid;
+    .hero-art-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(1rem, 1.8vw, 1.45rem);
       gap: 0.7rem;
     }
 
+    .hero-art-kicker {
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 179, 106, 0.22);
+      background: rgba(255, 244, 230, 0.05);
+      color: var(--accent-3);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-art-title {
+      max-width: 5ch;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5.1vw, 4.5rem);
+      line-height: 0.82;
+      letter-spacing: 0.03em;
+      color: #fff2e6;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-art-title span {
+      display: block;
+      color: var(--accent-soft);
+    }
+
+    .hero-art-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .hero-art-meta span {
+      padding: 0.4rem 0.66rem;
+      border-radius: 999px;
+      background: rgba(255, 244, 230, 0.05);
+      border: 1px solid rgba(255, 240, 223, 0.08);
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .hero-art-visual {
+      position: relative;
+      min-height: 100%;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 45%),
+        linear-gradient(135deg, rgba(255, 106, 61, 0.1), transparent 44%);
+      border-left: 1px solid rgba(255, 240, 223, 0.06);
+      overflow: hidden;
+    }
+
+    .hero-art-visual::before {
+      content: "";
+      position: absolute;
+      inset: 8% 14% 16% auto;
+      width: 46%;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255, 179, 106, 0.85), rgba(255, 106, 61, 0.1));
+      filter: blur(2px);
+      opacity: 0.95;
+      transform: rotate(12deg);
+      clip-path: polygon(46% 0, 54% 0, 58% 100%, 42% 100%);
+    }
+
+    .hero-art-visual::after {
+      content: "";
+      position: absolute;
+      right: 10%;
+      bottom: 14%;
+      width: 54%;
+      height: 30%;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 106, 61, 0.22), transparent 68%);
+      filter: blur(12px);
+    }
+
+    .hero-art-bars {
+      position: absolute;
+      left: 10%;
+      right: 28%;
+      bottom: 14%;
+      display: flex;
+      align-items: end;
+      gap: 0.45rem;
+      height: 26%;
+    }
+
+    .hero-art-bars span {
+      flex: 1;
+      border-radius: 999px 999px 0 0;
+      background: linear-gradient(180deg, var(--accent-2), rgba(47, 214, 196, 0.16));
+      opacity: 0.9;
+    }
+
+    .hero-art-bars span:nth-child(1) { height: 38%; }
+    .hero-art-bars span:nth-child(2) { height: 78%; }
+    .hero-art-bars span:nth-child(3) { height: 54%; }
+    .hero-art-bars span:nth-child(4) { height: 100%; }
+    .hero-art-bars span:nth-child(5) { height: 66%; }
+    .hero-art-bars span:nth-child(6) { height: 48%; }
+
+    .hero-art-seal {
+      position: relative;
+      align-self: start;
+      justify-self: start;
+      margin: clamp(1rem, 2vw, 1.5rem);
+      width: 5.25rem;
+      height: 5.25rem;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 240, 223, 0.14);
+      background: rgba(6, 4, 8, 0.38);
+      display: grid;
+      place-items: center;
+      color: var(--accent-3);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.14em;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .floating-stats {
+      position: static;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
     .stat {
-      background: rgba(7,7,11,0.82);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(14px);
-      border-radius: 18px;
-      padding: 0.95rem 1rem;
+      background: rgba(9, 7, 10, 0.82);
+      border: 1px solid rgba(255, 240, 223, 0.12);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 1rem 1.05rem;
       box-shadow: var(--shadow);
     }
 
     .stat strong {
       display: block;
-      font-size: 1.05rem;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
     }
 
     .stat span {
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.92rem;
     }
 
     .section {
-      padding: 4.5rem 0;
+      position: relative;
+      padding: 5rem 0;
+    }
+
+    .section + .section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: min(100%, 1280px);
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(255, 240, 223, 0.16), transparent);
     }
 
     .section-head {
@@ -262,14 +518,14 @@
       justify-content: space-between;
       align-items: end;
       gap: 1.5rem;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
     }
 
     .section-head h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 0.95;
-      letter-spacing: -0.04em;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.9rem, 5vw, 4.8rem);
+      line-height: 0.92;
+      letter-spacing: 0.03em;
     }
 
     .section-head p {
@@ -278,20 +534,35 @@
     }
 
     .quote-panel {
-      padding: 2rem;
+      position: relative;
+      padding: 2.4rem;
       border-radius: var(--radius-lg);
       border: 1px solid var(--line);
       background:
-        linear-gradient(135deg, rgba(139,92,246,0.12), rgba(0,212,255,0.08)),
-        rgba(255,255,255,0.03);
+        linear-gradient(135deg, rgba(255, 106, 61, 0.12), rgba(47, 214, 196, 0.08)),
+        rgba(255, 244, 230, 0.03);
       box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .quote-panel::after {
+      content: "";
+      position: absolute;
+      right: -3rem;
+      bottom: -4rem;
+      width: 14rem;
+      height: 14rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 179, 106, 0.18), transparent 70%);
     }
 
     .quote-panel blockquote {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2.4rem);
-      line-height: 1.1;
-      max-width: 26ch;
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 0.96;
+      letter-spacing: 0.03em;
+      max-width: 10ch;
     }
 
     .quote-panel cite {
@@ -299,12 +570,13 @@
       margin-top: 1rem;
       color: var(--muted);
       font-style: normal;
+      font-weight: 700;
     }
 
     .artist-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.35rem;
       margin-top: 2rem;
     }
 
@@ -312,12 +584,33 @@
       position: relative;
       border-radius: var(--radius-md);
       overflow: hidden;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255, 244, 230, 0.07), rgba(255, 244, 230, 0.02)),
+        rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 240, 223, 0.1);
       box-shadow: var(--shadow);
-      min-height: 520px;
+      min-height: 540px;
       display: flex;
       flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .artist-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      z-index: 2;
+    }
+
+    .artist-card:nth-child(2) {
+      margin-top: 2.25rem;
+    }
+
+    .artist-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 179, 106, 0.25);
     }
 
     .artist-card .media {
@@ -338,29 +631,31 @@
     }
 
     .artist-body {
-      padding: 1.2rem 1.15rem 1.3rem;
+      padding: 1.35rem 1.2rem 1.4rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.8rem;
       flex: 1;
     }
 
     .artist-tag {
       display: inline-flex;
       width: fit-content;
-      padding: 0.35rem 0.65rem;
+      padding: 0.38rem 0.7rem;
       border-radius: 999px;
-      font-size: 0.76rem;
-      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent);
-      background: rgba(244,208,63,0.08);
-      border: 1px solid rgba(244,208,63,0.2);
+      color: var(--accent-soft);
+      background: rgba(255, 179, 106, 0.08);
+      border: 1px solid rgba(255, 179, 106, 0.18);
     }
 
     .artist-body h3 {
-      font-size: 1.35rem;
-      line-height: 1.05;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.03em;
+      line-height: 0.95;
     }
 
     .artist-body p {
@@ -386,16 +681,18 @@
     }
 
     .pill-card {
-      padding: 1.25rem;
+      padding: 1.35rem;
       border-radius: var(--radius-md);
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
+      background:
+        linear-gradient(180deg, rgba(255, 244, 230, 0.07), rgba(255, 244, 230, 0.03)),
+        rgba(255, 255, 255, 0.02);
       box-shadow: var(--shadow);
     }
 
     .pill-card strong {
       display: block;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.55rem;
       font-size: 1rem;
     }
 
@@ -409,10 +706,12 @@
       grid-template-columns: 1fr auto;
       gap: 1.5rem;
       align-items: center;
-      padding: 1.4rem 1.5rem;
+      padding: 1.5rem 1.6rem;
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      background: rgba(255,255,255,0.04);
+      background:
+        linear-gradient(135deg, rgba(255, 106, 61, 0.07), rgba(47, 214, 196, 0.05)),
+        rgba(255, 255, 255, 0.03);
       box-shadow: var(--shadow);
     }
 
@@ -426,18 +725,20 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 118px;
-      padding: 0.85rem 1rem;
+      min-width: 122px;
+      padding: 0.9rem 1rem;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
+      background: rgba(255, 244, 230, 0.04);
       color: var(--text);
-      font-weight: 700;
+      font-weight: 800;
+      transition: transform 0.22s ease, border-color 0.22s ease, color 0.22s ease;
     }
 
     .social-links a:hover {
-      border-color: rgba(244,208,63,0.4);
-      color: var(--accent);
+      transform: translateY(-2px);
+      border-color: rgba(255, 179, 106, 0.34);
+      color: var(--accent-soft);
     }
 
     .site-footer {
@@ -451,7 +752,7 @@
       gap: 1rem;
       align-items: center;
       padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 240, 223, 0.08);
     }
 
     .footer-links {
@@ -461,45 +762,249 @@
       justify-content: flex-end;
     }
 
+    .footer-links a:hover {
+      color: var(--accent-soft);
+    }
+
+    .maker-footer {
+      margin-top: 2.2rem;
+      padding: 2.9rem 0 2.4rem;
+      background:
+        radial-gradient(circle at center, rgba(242, 213, 152, 0.18), transparent 55%),
+        linear-gradient(180deg, #f7f4ee, #f0eadb);
+      border: 1px solid rgba(47, 93, 80, 0.12);
+      border-radius: 28px;
+      color: #21424a;
+      overflow: hidden;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.12);
+    }
+
+    .maker-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.1rem;
+      padding-bottom: 1.4rem;
+      margin-bottom: 1.6rem;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.1);
+      color: #5f6b7e;
+      font-weight: 700;
+      font-size: 0.94rem;
+    }
+
+    .maker-links a {
+      transition: color 0.2s ease;
+    }
+
+    .maker-links a:hover {
+      color: #f07522;
+    }
+
+    .maker-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 1.3rem;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .maker-thumb {
+      width: 112px;
+      height: 112px;
+      border-radius: 30px;
+      background: #fff;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.12);
+      display: grid;
+      place-items: center;
+      padding: 0.8rem;
+    }
+
+    .maker-thumb-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(240, 117, 34, 0.22), transparent 26%),
+        linear-gradient(180deg, #33291f 0%, #1a1512 100%);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 0.5rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 0.35rem;
+    }
+
+    .maker-thumb-copy {
+      display: grid;
+      align-content: start;
+      gap: 0.28rem;
+    }
+
+    .maker-thumb-line {
+      display: block;
+      height: 0.26rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .maker-thumb-line.short { width: 72%; }
+    .maker-thumb-line.accent {
+      width: 84%;
+      background: #f08b2c;
+    }
+
+    .maker-thumb-panels {
+      display: grid;
+      gap: 0.28rem;
+      align-content: start;
+    }
+
+    .maker-thumb-panels span,
+    .maker-thumb-grid span {
+      border-radius: 7px;
+      background: rgba(238, 214, 171, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .maker-thumb-panels span {
+      height: 1rem;
+    }
+
+    .maker-thumb-grid {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.28rem;
+      align-content: end;
+    }
+
+    .maker-thumb-grid span {
+      height: 0.9rem;
+    }
+
+    .maker-copy h3 {
+      font-size: clamp(1.9rem, 5vw, 3.7rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: #1f4138;
+      margin-bottom: 0.45rem;
+    }
+
+    .maker-copy p {
+      color: #5d6a70;
+      font-size: 1.02rem;
+    }
+
+    .maker-copy strong {
+      color: #d86f2f;
+      font-weight: 800;
+    }
+
     .menu-btn {
       display: none;
       background: transparent;
       color: var(--text);
       border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 0.7rem 0.85rem;
+      padding: 0.7rem 0.9rem;
       font-size: 1rem;
+      font-weight: 700;
     }
 
     .maintenance-note {
       margin-top: 1.25rem;
       display: inline-flex;
-      gap: 0.6rem;
+      gap: 0.7rem;
       align-items: center;
-      padding: 0.85rem 1rem;
+      padding: 0.88rem 1.05rem;
       border-radius: 999px;
-      background: rgba(255,93,93,0.08);
-      color: #ffd1d1;
-      border: 1px solid rgba(255,93,93,0.2);
-      font-weight: 600;
+      background: rgba(255, 106, 61, 0.08);
+      color: #ffd8c9;
+      border: 1px solid rgba(255, 106, 61, 0.2);
+      font-weight: 700;
+    }
+
+    .maintenance-note .flag {
+      width: 1.7rem;
+      height: 1.7rem;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(255, 106, 61, 0.14);
+      color: var(--accent-soft);
+      font-size: 0.82rem;
+      flex-shrink: 0;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, 16px, 0); }
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 22px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      body::before { animation: drift 10s ease-in-out infinite; }
+      .hero-grid > div:first-child { animation: rise-in 0.75s ease both; }
+      .hero-card { animation: rise-in 0.9s ease 0.12s both; }
+      .pill-card:nth-child(2) { animation: rise-in 0.8s ease 0.1s both; }
+      .pill-card:nth-child(3) { animation: rise-in 0.8s ease 0.18s both; }
+    }
+
+    @media (max-width: 1200px) {
+      .hero-media {
+        aspect-ratio: 16 / 9;
+      }
+
+      .hero-art-title {
+        font-size: clamp(2.3rem, 4.8vw, 3.8rem);
+      }
     }
 
     @media (max-width: 1080px) {
       .hero-grid,
       .social-section,
       .footer-grid,
-      .section-head,
       .pill-grid {
         grid-template-columns: 1fr;
       }
 
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-head > div,
+      .section-head p {
+        width: 100%;
+        max-width: 100%;
+      }
+
       .artist-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .footer-links { justify-content: flex-start; }
-      .floating-stats { position: static; width: 100%; margin-top: 1rem; }
+      .artist-card:nth-child(2) { margin-top: 0; }
+      .hero-card { transform: none; }
+      .hero-art-title {
+        max-width: 100%;
+        font-size: clamp(2.4rem, 6vw, 4rem);
+      }
     }
 
     @media (max-width: 760px) {
       .menu-btn { display: inline-flex; }
+
       .nav-links {
         position: absolute;
         top: calc(100% + 0.65rem);
@@ -509,16 +1014,94 @@
         flex-direction: column;
         align-items: stretch;
         padding: 1rem;
-        background: rgba(7,7,11,0.96);
+        background: rgba(9, 7, 10, 0.97);
         border: 1px solid var(--line);
         border-radius: 20px;
       }
+
       .nav-links.open { display: flex; }
       .nav-links .nav-cta { text-align: center; }
       .artist-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 4.25rem; }
+      .hero { padding-top: 4.5rem; }
+      .hero-grid { gap: 1.6rem; }
+      .hero-card { padding: 0.9rem; }
+      .hero-media {
+        aspect-ratio: 16 / 9;
+        padding: 0.45rem;
+      }
+      .hero-art {
+        grid-template-columns: 1fr;
+      }
+      .hero-art-copy {
+        padding: 1rem;
+      }
+      .hero-art-title {
+        max-width: 100%;
+        font-size: clamp(2.5rem, 12vw, 4rem);
+      }
+      .hero-art-meta span {
+        font-size: 0.74rem;
+      }
+      .hero-art-visual {
+        min-height: 8rem;
+        border-left: 0;
+        border-top: 1px solid rgba(255, 240, 223, 0.06);
+      }
+      .hero-art-seal {
+        width: 4.3rem;
+        height: 4.3rem;
+        font-size: 1rem;
+        margin: 0.9rem;
+      }
+      .hero-art-bars {
+        left: 8%;
+        right: 34%;
+        bottom: 12%;
+        height: 34%;
+      }
+      .floating-stats { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .btn { width: 100%; }
+      .quote-panel { padding: 1.7rem; }
+      .quote-panel blockquote { max-width: 100%; }
+      .maker-footer {
+        padding: 2.75rem 0;
+        border-radius: 22px;
+      }
+      .maker-links {
+        display: none;
+      }
+      .maker-card {
+        grid-template-columns: 72px 1fr;
+        gap: 1rem;
+        width: 100%;
+      }
+      .maker-thumb {
+        width: 86px;
+        height: 86px;
+        border-radius: 20px;
+        padding: 0.55rem;
+      }
+      .maker-thumb-screen {
+        border-radius: 15px;
+        padding: 0.32rem;
+        gap: 0.2rem;
+      }
+      .maker-thumb-panels span {
+        height: 0.62rem;
+      }
+      .maker-thumb-grid span {
+        height: 0.58rem;
+      }
+      .maker-copy h3 {
+        font-size: clamp(1.2rem, 7vw, 2rem);
+        line-height: 1.1;
+        margin-bottom: 0.18rem;
+      }
+      .maker-copy p {
+        font-size: 0.88rem;
+        line-height: 1.35;
+      }
     }
   </style>
 </head>
@@ -552,11 +1135,11 @@
             <span class="accent">QikFix is awake.</span>
           </h1>
           <p>
-            The original page had the bones of a crew site, but 2026 needs something bigger: stronger presence, cleaner structure, modern typography, artist-first storytelling, and clear paths to discover the music and movement.
+            QikFix is a Minnesota hip hop collective built on sharp lyricism, real presence, and a sound rooted in hunger, heart, and movement. This space brings the crew together in one place and gives listeners a direct line into the artists, the energy, and what comes next.
           </p>
 
           <div class="maintenance-note">
-            <span>▲</span>
+            <span class="flag">▲</span>
             <span>New era site build in progress — content, drops, and event updates coming next.</span>
           </div>
 
@@ -568,7 +1151,31 @@
 
         <div class="hero-card">
           <div class="hero-media">
-            <img src="photos/banner.jpg" alt="QikFix banner artwork" />
+            <div class="hero-art" aria-hidden="true">
+              <div class="hero-art-copy">
+                <span class="hero-art-kicker">Minnesota collective</span>
+                <div class="hero-art-title">
+                  Raw voices.
+                  <span>Real motion.</span>
+                </div>
+                <div class="hero-art-meta">
+                  <span>QikFix</span>
+                  <span>Hip Hop</span>
+                  <span>Live Energy</span>
+                </div>
+              </div>
+              <div class="hero-art-visual">
+                <div class="hero-art-seal">QF<br>MN</div>
+                <div class="hero-art-bars">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="floating-stats">
             <div class="stat">
@@ -592,27 +1199,27 @@
             <h2>More than a placeholder. More like a statement.</h2>
           </div>
           <p>
-            Instead of the old “site under maintenance / content coming soon” feeling, this version gives QikFix a polished landing page that still keeps the original voice and crew identity front and center.
+            QikFix brings together artists with distinct voices, shared purpose, and a commitment to making music that hits with honesty. The collective carries both individual identity and a unified direction, turning every release, performance, and visual into part of a larger statement.
           </p>
         </div>
 
         <div class="quote-panel">
-          <blockquote>“I was a sleeping giant, but now I am awake.”</blockquote>
-          <cite>— Jayk da Ripper</cite>
+          <blockquote>"I was a sleeping giant, but now I am awake."</blockquote>
+          <cite>- Jayk da Ripper</cite>
         </div>
 
         <div class="pill-grid">
           <article class="pill-card">
             <strong>Artist-first structure</strong>
-            <p>Every member gets space to feel intentional instead of being lost in a basic grid.</p>
+            <p>Each artist has room to stand on their own while still being part of the larger QikFix identity.</p>
           </article>
           <article class="pill-card">
             <strong>Modern visual direction</strong>
-            <p>Dark luxury styling, glass panels, bold typography, and strong contrast push it into 2026.</p>
+            <p>Bold imagery, layered textures, and clean typography give the collective a look that feels focused and current.</p>
           </article>
           <article class="pill-card">
             <strong>Built to scale</strong>
-            <p>You can add releases, tour dates, embedded audio, merch, galleries, and press kits without redesigning again.</p>
+            <p>The site is ready to expand with music, visuals, performances, merch, and future releases as the movement grows.</p>
           </article>
         </div>
       </div>
@@ -622,11 +1229,10 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <span class="eyebrow">The roster</span>
             <h2>The people behind QikFix</h2>
           </div>
           <p>
-            The artist section below keeps your existing names and bios, but presents them like a real creative collective instead of a temporary holding page.
+            Every artist in QikFix adds a different texture to the collective, and the roster reflects that range with personality, clarity, and presence.
           </p>
         </div>
 
@@ -639,10 +1245,10 @@
               <span class="artist-tag">Founder energy</span>
               <h3>Jayk da Ripper</h3>
               <p>
-                Reserved growing up, always deep in thought, Jayk turned poetry into performance and years of writing into a sharpened voice. The story is about patience, work, and building something real through the grind.
+                Jayk da Ripper channels reflection, discipline, and lived experience into music that feels direct and earned. His work carries the weight of years spent writing, refining, and building something with purpose.
               </p>
               <div class="artist-meta">
-                <span>Writer • Performer • Vision</span>
+                <span>Writer / Performer / Vision</span>
                 <span>QikFix</span>
               </div>
             </div>
@@ -656,10 +1262,10 @@
               <span class="artist-tag">Voice & perspective</span>
               <h3>Panic</h3>
               <p>
-                Panic brings personality, intelligence, communication, and raw honesty. This bio keeps that original unpredictability but frames it with stronger readability and a more intentional presentation.
+                Panic brings intelligence, candor, and personality to every verse, balancing sharp perspective with raw honesty. The result is a presence that feels unpredictable in the best way and impossible to ignore.
               </p>
               <div class="artist-meta">
-                <span>Message • Community • Edge</span>
+                <span>Message / Community / Edge</span>
                 <span>QikFix</span>
               </div>
             </div>
@@ -676,7 +1282,7 @@
             <h2>Find QikFix everywhere the audience listens</h2>
           </div>
           <p>
-            The original footer had the right links, but the layout was repetitive and dated. This turns it into a focused action area that actually helps visitors move.
+            QikFix lives across platforms, making it easy to follow the collective, keep up with releases, and tap into the latest visuals, music, and updates.
           </p>
         </div>
 
@@ -684,7 +1290,7 @@
           <div>
             <h3 style="font-size:1.4rem; margin-bottom:0.45rem;">Tap into the network</h3>
             <p style="color:var(--muted); max-width:58ch;">
-              Follow, stream, watch, and support. This block can later expand with Spotify embeds, release cards, show dates, and merch links.
+              Follow, stream, watch, and support the movement across every major channel where QikFix shows up.
             </p>
           </div>
 
@@ -705,13 +1311,52 @@
     <div class="container footer-grid">
       <div>
         <strong style="display:block; margin-bottom:0.35rem; color:var(--text);">QikFix Home</strong>
-        <p>A 2026-ready redesign for a Minnesota hip hop collective with room to grow into a full artist platform.</p>
+        <p>Minnesota hip hop collective built around voice, vision, and the energy of a crew moving with purpose.</p>
       </div>
       <div class="footer-links">
         <a href="#top">Top</a>
         <a href="#artists">Artists</a>
         <a href="#story">Story</a>
         <a href="#connect">Connect</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="maker-footer">
+        <div class="maker-links" aria-label="Maker network">
+          <a href="https://www.truebitforgenorth.com/" target="_blank" rel="noopener">TrueBit Forge North</a>
+          <a href="https://goodflightgolf.com/" target="_blank" rel="noopener">GoodFlightGolf</a>
+          <a href="https://krlars10-dev.github.io/debtcals/" target="_blank" rel="noopener">Debt Payoff Calculator</a>
+          <a href="https://krlars10-dev.github.io/Let-s-Game-the-MidWest/" target="_blank" rel="noopener">Lets Game The Mid West</a>
+        </div>
+
+        <div class="maker-card">
+          <div class="maker-thumb" aria-hidden="true">
+            <div class="maker-thumb-screen">
+              <div class="maker-thumb-copy">
+                <span class="maker-thumb-line short"></span>
+                <span class="maker-thumb-line accent"></span>
+                <span class="maker-thumb-line"></span>
+                <span class="maker-thumb-line short"></span>
+              </div>
+              <div class="maker-thumb-panels">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="maker-thumb-grid">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="maker-copy">
+            <h3>QikFix Home</h3>
+            <p>Site built by <strong>TrueBit Forge North LLC.</strong></p>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
